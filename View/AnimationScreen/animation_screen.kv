@@ -1,0 +1,16 @@
+<AnimationScreenView>:
+    on_touch_down: app.handle_touch(*args)
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        AnchorLayout:
+            BoxLayout:
+                id: svg_area
+                size_hint: None, None
+                size: 256, 256

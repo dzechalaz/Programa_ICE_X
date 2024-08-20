@@ -1,0 +1,58 @@
+<MainScreenView>
+    md_bg_color: "#FBFFF5"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Cobro"
+            left_action_items: [["arrow-left", lambda x: app.change_to_slider_menu()]]
+            md_bg_color: 0, 0, 0, 1
+            specific_text_color: 1, 1, 1, 1
+            anchor_title: "left"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            padding: "24dp"
+            spacing: "20dp"  # Espaciado entre los elementos
+
+            MDLabel:
+                id: total_money_label
+                text: "Total dinero: 0 pesos"
+                halign: "center"
+                theme_text_color: "Primary"
+                font_style: "H5"
+
+            Widget:  # Espaciador entre los labels
+
+            MDLabel:
+                id: amount_to_charge_label
+                text: "Monto a cobrar: 0 pesos"
+                halign: "center"
+                theme_text_color: "Secondary"
+                font_style: "H6"
+
+        Widget:  # Espaciador entre los labels y los botones
+
+        MDRoundFlatButton:
+            text: "Pagar"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .3, .065
+            md_bg_color: 0, 0, 0, .8  # Custom background color (R, G, B, A)
+            text_color: 1, 1, 1, 1  # Custom text color (R, G, B, A)
+            line_color: 1, 1, 1, 1  # Custom border color (R, G, B, A)
+            font_size: "50sp"
+            on_press: app.servirhelado()
+
+        MDRoundFlatButton:
+            text: "Cancelar"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .3, .065
+            md_bg_color: 1, 0, 0, .8  # Custom background color (R, G, B, A)
+            text_color: 1, 1, 1, 1  # Custom text color (R, G, B, A)
+            line_color: 1, 1, 1, 1  # Custom border color (R, G, B, A)
+            font_size: "50sp"
+            on_press: app.cancelar_venta()
+
+        Widget:

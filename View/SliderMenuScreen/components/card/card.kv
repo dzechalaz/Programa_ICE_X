@@ -1,0 +1,77 @@
+<PizzaImage>
+    scale_value_x: self.scale
+    scale_value_y: self.scale
+    rotate_value_angle: self.angle
+    rotate_value_axis: (0, 0, 1)
+
+
+<PizzaCard>
+    size_hint: .9, .95
+    pos_hint: {"center_x": .5, "center_y": .5}
+    radius: 20
+    md_bg_color: "lightgrey"
+
+    RelativeLayout:
+
+        FitImage:
+            id: image_bg
+            source: root.source_bg
+            size_hint: None, .8
+            width: root.width + dp(100)
+            y: root.height - self.height
+
+        PizzaImage:
+            id: pizza_image
+            source: root.source
+            size_hint: None, None
+            size: root.width / 1.2, root.width / 1.2
+            pos_hint: {"center_x": .5, "center_y": .5}
+            y: image_bg.y - dp(24)
+
+        MDLabel:
+            id: pizza_name
+            text: root.pizza_name
+            bold: True
+            adaptive_size: True
+            font_style: "H4"
+            font_name: "assets/font/Hamberger-Bold.ttf"
+            font_size: "80sp"
+            color: 1, 1, 1, 1
+            x: dp(500)
+            y: root.height - self.height - dp(20)
+
+        MDLabel:
+            text: root.pizza_description
+            adaptive_size: True
+            text_size: root.width - (root.width * dp(30) / 100), None
+            color: 1, 1, 1, 1
+            font_name: "assets/font/hot-pizza.ttf"
+            x: pizza_name.x
+            y: pizza_name.y - self.height - dp(20)
+
+        MDRoundFlatButton:
+            text: root.pizza_cost
+            size_hint: .3, .065
+            pos_hint: {"center_x": .5}
+            md_bg_color: 0, 0, 0, .5  # Custom background color (R, G, B, A)
+            text_color: 1, 1, 1, 1  # Custom text color (R, G, B, A)
+            line_color: 1, 1, 1, 1  # Custom border color (R, G, B, A)
+            y: "30dp"
+            line_width: 2
+            font_name: "assets/font/Roboto-Black.ttf"
+            font_size: "50sp"
+            on_press:app.pedirHelado(root.pizza_name,root.pizza_cost)
+            on_release: app.change_to_slider_menu_variable(root.pizza_name)
+
+        MDRoundFlatButton:
+            text: "Volver"
+            size_hint: .1, .065
+            font_name: "assets/font/Roboto-Black.ttf"
+            pos_hint: {"center_x": .1}
+            md_bg_color: 1, 1, 1, .2  # Custom background color (R, G, B, A)
+            text_color: 0, 0, 0, 1  # Custom text color (R, G, B, A)
+            line_color: 0, 0, 0, 1  # Custom border color (R, G, B, A)
+            y: "60dp"
+            line_width: 2
+            font_size: "50sp"
+            on_release: app.root.current = "recipiente"
